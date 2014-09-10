@@ -1,0 +1,65 @@
+#set($layout="main.vm")
+#set($page_title = "NextApp 功能介绍")
+<div id="page_banner">
+    <div class="container">
+        <h2>NextApp 功能介绍</h2>
+    </div>
+
+</div>
+<div id="main">
+    <script type="text/javascript">
+               $(function () {
+                   $("#features").Slide({
+                       effect:"fade",
+                       speed:"fast",
+                       timer:10000
+                   });
+               });
+    </script>
+    <div class="container createapp_page clearfix">
+        <p style="margin-bottom: 15px;">你想让别人在手机上访问你的博客吗？你想通过手机来写博客吗？
+            RSS？还是WAP？都弱爆了！HTML5都不靠谱！
+        </p>
+        <div id="features" class="clearfix">
+            <div class="features">
+                <ul class="features_list JQ-slide-nav">
+                    <li class="item on"><p class="pic"><img src="img/icon_1.png" /></p>
+                        <p class="dec"><span>1.最新文章</span>App 打开的时候会列出网站最新的文章，包括文章摘要，发表时间，评论数量等等。
+                        </p>
+                    </li>
+                    <li class="item"><p class="pic"><img src="img/icon_2.png" /></p>
+                        <p class="dec"> <span>2.最新评论</span>在最新评论页面会列出网站最新的评论，点击任何评论都会进入该评论的文章页面。管理员登录以后可以进行删除评论操作。</p>
+                    </li>
+                    <li class="item"><p class="pic"><img src="img/icon_3.png" /></p>
+                        <p class="dec"><span>3.文章详情</span>文章详情页面会显示该文章的详细内容，包括相关文章和评论。同时支持发表评论，分享到新浪微博、腾讯微博。也可以选择在浏览器中打开当前文章。
+                        </p>
+                    </li>
+                    <li class="item"><p class="pic"><img src="img/icon_4.png" /></p>
+
+                        <p class="dec"><span>4.发表评论</span>用户在文章详情页点击评论按钮后会显示评论表单，用户可以对当前文章发表评论。
+
+                        </p>
+                    </li>
+                    <li class="item"><p class="pic"><img src="img/icon_5.png" /></p>
+                        <p class="dec"><span>5.发表文章</span>用户登陆以后可以发表文章，用户可以对文章进行简单的编辑，选择目录，设置标签，插入图片（支持摄像头拍照）等等。
+                        </p>
+                    </li>
+                    <li class="item"><p class="pic"><img src="img/icon_6.png" /></p>
+                        <p class="dec"><span>6.快速分享</span>阅读文章时可直接通过新浪微博和腾讯微博分享当前文章和链接，增加文章的浏览量。</p>
+                    </li>
+                </ul>
+                <div class="JQ-content-box">
+                    <ul class="JQ-slide-content">
+                        <li><img src="img/f_zxwz.jpg" alt=""/> </li>
+                        <li><img src="img/f_zxpl.jpg" alt=""/> </li>
+                        <li><img src="img/f_wzxq.jpg" alt=""/> </li>
+                        <li><img src="img/f_fbpl.jpg" alt=""/> </li>
+                        <li><img src="img/f_fbwz.jpg" alt=""/> </li>
+                        <li><img src="img/f_fenxiang.jpg" alt=""/> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

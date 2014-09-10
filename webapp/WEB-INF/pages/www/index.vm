@@ -1,0 +1,105 @@
+#set($layout="main.vm")
+#set($page_title = "NextApp : 您专属的手机客户端软件")
+<script type="text/javascript">
+    $(function () {
+        $("#app_show").Slide({
+            effect:"fade",
+            speed:"fast",
+            timer:3000
+        });
+    });
+</script>
+<div id="index_banner">
+    <div class="container">
+        <dl class="item">
+            <dd class="info">
+                <div class="text">
+					<h1>即刻为你的博客<span>创建专属手机客户端</span></h1>
+					<ul>
+						<li>查看分类、查看文章，查看评论</li>
+						<li>发表博客、发表评论</li>
+						<li>支持图片上传，支持摄像头拍照上传</li>
+						<li>支持 Android、iPhone 和 Windows Phone 7</li>
+					</ul>
+                    <div class="bnt"><a href="#if($g_user)/step1#else/login?page=step1#end">开始生成我的APP</a></div>
+                    <img src="img/pic1.png" width="332" height="53" alt=" "/></div>
+            </dd>
+            <dd class="pic">
+                <div id="app_show">
+                    <ul class="JQ-slide-nav">
+                        <li class="item on">1</li>
+                        <li class="item">2</li>
+                        <li class="item">3</li>
+                        <li class="item">4</li>
+                        <li class="item">5</li>
+                        <li class="item">6</li>
+                    </ul>
+                    <div class="JQ-content-box">
+                        <ul class="JQ-slide-content">
+                            <li style="z-index: 1; opacity: 1; "><img src="$link.img('start/001.jpg')" alt=""></li>
+                            <li style="z-index: 0; opacity: 0; "><img src="$link.img('start/002.jpg')" alt=""></li>
+                            <li style="z-index: 0; opacity: 0; "><img src="$link.img('start/003.jpg')" alt=""></li>
+                            <li style="z-index: 0; opacity: 0; "><img src="$link.img('start/004.jpg')" alt=""></li>
+                            <li style="z-index: 0; opacity: 0; "><img src="$link.img('start/005.jpg')" alt=""></li>
+                            <li style="z-index: 0; opacity: 0; "><img src="$link.img('start/006.jpg')" alt=""></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </dd>
+        </dl>
+    </div>
+</div>
+<div id="main">
+    <div class="container clearfix">
+        <h3 class="Slogans">3步创建你专属的 App！</h3>
+
+        <div class="main_col">
+            <ul class="setup">
+                <li>
+                    <dl class="a">
+                        <dt class="set">1<ins></ins>
+                        </dt>
+                        <dt class="name">
+                        <h4>安装 NextApp 插件</h4></dt>
+                        <dd class="info">你可以通过 WordPress 后台的插件管理器安装，<br/>
+                            也可以下载插件手工安装。<br/>
+                            你可以通过访问http://www.yourblog.com/nextapp<br/>
+                            来查看插件是否安装成功。
+                        </dd>
+                        <dd class="links"><a href="/step1">下载 WordPress 插件</a></dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl class="b">
+                        <dt class="set">2<ins></ins>
+                        </dt>
+                        <dt class="name">
+                        <h4> 通过 NextApp 网站生成你的 App</h4></dt>
+                        <dd class="info">访问 http://www.nextapp.cn/step1，
+                            <br/>
+                            根据页面指引填写相应的表格并提交。<br/>
+                            生成 App 需要一定的时间，一般是10-30 分钟，<br/>
+                            请耐心等待。
+                        </dd>
+                        <dd class="links"><a href="/step2">生成我的App</a></dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl class="c">
+                        <dt class="set">3<ins></ins>
+                        </dt>
+                        <dt class="name">
+                        <h4>下载并发布你的 App</h4></dt>
+                        <dd class="info">当你的App生成完毕以后，系统会发邮件通知你，<br/>
+                            你也可以在管理后台看到App的生成状态。<br/>
+                            你可以通过邮件中的App下载链接或者后台的下载链接下载App。
+                        </dd>
+                        <dd class="links"><a href="/cases">下载我的 App</a></dd>
+                    </dl>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>

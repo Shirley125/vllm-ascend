@@ -1,0 +1,1 @@
+#set($__nothing = $response.sendError(404, "NextApp Api"))

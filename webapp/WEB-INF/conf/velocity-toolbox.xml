@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<toolbox>
+
+  <tool>
+     <key>NextApp</key>
+     <scope>application</scope>
+     <class>cn.nextapp.platform.toolbox.NextAppTools</class>
+  </tool>
+
+  <tool>
+     <key>ADMIN</key>
+     <scope>application</scope>
+     <class>cn.nextapp.platform.toolbox.AdminTools</class>
+  </tool>
+
+  <tool>
+     <key>resource</key>
+     <scope>request</scope>
+     <class>my.view.ResourceTool</class>
+  </tool>
+
+  <tool>
+     <key>link</key>
+     <scope>request</scope>
+     <class>cn.nextapp.platform.toolbox.LinkTool</class>
+  </tool>
+
+  <tool>
+     <key>format</key>
+     <scope>application</scope>
+     <class>my.view.FormatTool</class>
+  </tool>
+
+  <tool>
+    <key>date</key>
+    <scope>application</scope>
+    <class>my.view.DateTimeTool</class>
+  </tool>
+  
+</toolbox>

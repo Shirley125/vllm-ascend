@@ -1,0 +1,82 @@
+#set($layout="main.vm")
+#set($page_title = "安装 NextApp 插件 - NextApp")
+<div id="page_banner">
+    <div class="container">
+        <h2>生成NextApp</h2>
+    </div>
+</div>
+<div id="main">
+    <div class="container createapp_page clearfix">
+        <div class="main_col clearfix">
+            <div class="app_tips clearfix">
+                <ul>
+                    <li class="first"><span class="curr"><em class="l"></em>1.安装NextApp插件<em class="r"></em></span></li>
+                    <li><span><em class="l"></em>2.填写网站基本资料<em class="r"></em></span></li>
+                    <li class="end"><span><em class="l"></em>3.上传自定义图片<em class="r"></em></span></li>
+                </ul>
+            </div>
+            <div class="form clearfix">
+            <div class="left_col" style="border-right: 1px solid #eee; width: 500px;">
+                <ol class="textlist">
+                    <li>
+                        <dl>
+                            <dt>安装 WordPress 插件</dt>
+                            <dd>
+                                <h3>方法一：自动下载安装 <span style='color:#A00;'>(推荐)</span></h3>
+                                <ol>
+									<li>1. 打开WordPress后台，进入插件管理页面</li>
+                                    <li> 2. 点击 Add New （添加新插件）</li>
+                                    <li> 3. 在搜索框中输入 “<b>nextapp</b>”</li>
+                                    <li> 4. 搜索结果会出现 NextApp 插件，点击 Install（安装）链接</li>
+                                    <li>5. 安装完毕以后点击 Activate（启用）插件链接。</li>
+    							</ol>
+								<h3>方法二：手动下载安装</h3>
+                                <ol>
+									<li>1. 下载 <a href="http://downloads.wordpress.org/plugin/nextapp.zip">http://downloads.wordpress.org/plugin/nextapp.zip</a></li>
+									<li>2. 解压缩 nextapp.zip 到 &lt;wordpress_root&gt;/wp-content/plugins/ 目录，确认 &lt;wordpress_root&gt;/wp-content/plugins/nextapp/index.php 文件的存在</li>
+                                    <li>3. 打开WordPress后台，进入插件管理页面，启用 NextApp 插件。</li>
+								</ol>
+
+                            <h3>如果你的博客不是 WordPress 请联系我们</h3>
+                                <ol>
+								<li>邮箱：nextapp.cn(#)gmail.com</li>
+								<li><a href="/contact" target="_blank">查看详细联系方式</a></li>
+								</ol>
+							</dd>
+                        </dl>
+                    </li>
+
+                </ol>
+            </div>
+            <div class="right_col" style="margin-left: 25px; width: 360px;">
+                <ol class="textlist apppic">                     
+                   <li>
+                       <dl>
+                           <dt>您需要准备的图片</dt>
+                           <dd><strong>Logo</strong><br/>像素 150*40，将会被用于应用程序界面</dd>
+                           <dd><strong>App Icon</strong><br/>像素 200*200，将会被用于APP 图标</dd>
+                           <dd><strong>启动界面</strong><br/>像素 480*800，将会被用于应用程序的启动界面</dd>
+                           <dd><a href="$link.img('temple.zip')">下载图片模版(PSD)</a></dd>
+                       </dl>
+                   </li>
+               </ol>
+            </div></div>
+
+        </div>
+        <a href="/step2" class="button" style='padding-left:60px;' onclick="return check_agreement();">下一步</a>
+		<div style='margin:15px 0 0 0;font-weight:bold;'>
+		<input type='checkbox' id='cb_agreement'/> <label for='cb_agreement'>我已经阅读并同意 <a href="/agreement" target="_blank">NextApp 服务条款</label>
+		</div>
+    </div>
+</div>
+<script type='text/javascript'>
+<!--
+function check_agreement(){
+if($("#cb_agreement").attr('checked')==undefined){
+	alert("必须阅读并同意 NextApp 服务条款后方可继续");
+	return false;
+}
+return true;
+}
+//-->
+</script>

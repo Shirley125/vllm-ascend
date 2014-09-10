@@ -1,0 +1,53 @@
+<h3>已绑定的登录方式</h3>
+
+<p>使用如下任一方式都可以登录到该帐号，避免由于某个帐号失效导致无法登录NextApp</p><br/>
+<table width='100%' class="table1">
+    <thead>
+    <tr>
+        <th width='40'>序号</th>
+        <th>登录方式</th>
+        <th>详情</th>
+        <th width='50'>管理</th>
+    </tr>
+    </thead>
+    <tbody>
+    #foreach($openid in $g_user.openids())
+    <tr id='openid_${openid.id}'>
+        <td>$velocityCount</td>
+        <td>$resource.ui("openid_${openid.typeDesc()}")</td>
+        <td>${openid.openid}</td>
+        <td><a href="javascript:delete_openid(${openid.id},'${openid.openid}')">删除</a></td>
+    </tr>
+    #end
+    </tbody>
+</table>
+<div align="center">
+    <a href="javascript:bind_openids()" title="添加其他登录方式" class="a_icon"><img src="/img/add_login.png" alt="添加其他登录方式"/></a></div>
+	<div id='bind_other_openids' style='display:none; width: 650px; margin: 15px auto 30px; '>
+        <ul class="loginlist">
+            <li><a href="$link.action('openid/request_bind?provider=qq')"><img src="/img/l_qq.png" alt="QQ帐号"/></a></li>
+            <li><a href="$link.action('openid/request_bind?provider=weibo')"><img src="/img/l_sina.png" alt="新浪微博"/></a></li>
+            <li><a href="$link.action('openid/request_bind?provider=google')"><img src="/img/l_gmail.png" alt="Gmail"/></a></li>
+            <li><a href="$link.action('openid/request_bind?provider=hotmail')"><img src="/img/l_hotmail.png" alt="Hotmail"/></a></li>
+            <li><a href="$link.action('openid/request_bind?provider=yahoo')"><img src="/img/l_yahoo.png" alt="Yahoo"/></a></li>
+        </ul>
+    </div>
+</div>
+<script type='text/javascript'>
+    <!--
+    function bind_openids() {
+        $('#bind_other_openids').toggle();
+    }
+    function delete_openid(id, account) {
+        if (confirm("确认要删除登录方式：" + account + " 吗？")) {
+            ajax_post("$link.action('user/deleteOpenid')", "id=" + id, function (html) {
+                if (html.length == 0) {
+                    $('#openid_' + id).fadeOut();
+                }
+                else
+                    alert(html);
+            });
+        }
+    }
+    //-->
+</script>

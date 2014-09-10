@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>NextApp</title>
+	<style>
+	#logo {margin:0 0 10px 0;text-align:center; border-bottom:1px solid #666;padding-bottom:5px;}
+	</style>
+</head> 
+<body>
+	<div id='logo'>
+		<img src='$link.img('logo.gif')'/>
+	</div>
+	
+	#foreach($appid in [3,4,5,1,2])
+	#set($app = $NextApp.app($appid))
+    <div class="app">
+		<img src="$link.upload("img/${app.logo}")" title="$format.text(${app.name})"/>
+		<p>$format.text($format.abbreviate(${app.outline},64))</p>
+        <p class="download"><strong>下载：</strong>										
+			#foreach($ver in $app.versions())
+			<a href="$ver.url()">$resource.ui("s_client_type_${ver.client_type}")</a>#if($velocityHasNext) /#end
+			#end
+		</p>
+	</div>
+	#end
+</body>
+</html>

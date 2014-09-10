@@ -1,0 +1,25 @@
+#if($g_user)
+#set($layout='main.vm')
+#set($page_title = '我的个人中心 - NextApp')
+#set($sub_page = $link.param('p1','apps'))
+
+<div id="page_banner">
+    <div class="container">
+        <h2>个人中心 <span>($format.text(${g_user.name}))</span>
+        </h2>
+    </div>
+</div>
+<div id="main">
+    <div class="container user_page">
+        <ul class="user_nav clearfix">
+            <li#if($sub_page=='apps') class="on"#end><a href="/my">我的App</a></li>
+            <li#if($sub_page=='edit_user_info') class="on"#end><a href="/my/edit_user_info">修改个人资料</a></li>
+            <li#if($sub_page=='bind_openid') class="on"#end> <a href="/my/bind_openid">绑定其他登录方式</a></li>
+
+        </ul>
+        #invoke("_${sub_page}.vm")
+    </div>
+</div>
+#else
+#set($_nothing = $link.redirect($link.root('login')))
+#end

@@ -1,0 +1,96 @@
+#set($admin_ids = [1,2,3,4,5])
+#if($g_user && $admin_ids.contains(${g_user.id}))
+#set($layout='admin.vm')
+#set($page_title = '管理后台 - NextApp')
+#set($status = $link.param('status',1))
+#set($page = $link.param('p',1))
+#set($PAGE_SIZE = 10)
+
+#set($app_count = $ADMIN.app_count_by_status($status))
+#set($pending_count = $app_count)
+#if($status != 1)
+#set($pending_count = $ADMIN.app_count_by_status(1))
+#end
+#set($apps = $ADMIN.list_app_by_status($status, $page, $PAGE_SIZE))
+
+<div id="page_banner">
+  <div class="container">
+    <h2>管理后台 &raquo; $format.text(${g_user.name}) 
+		<span style='font-size:10pt;font-weight:normal;margin-left:10px;float:right;'>
+			<a href="/admin">待审批 ($pending_count)</a> |
+			<a href="/admin?status=2">审批通过</a> |
+			<a href="/admin?status=3">审批不通过</a>
+		</span>
+	</h2>
+  </div>
+</div>
+<div id="main">
+  <div class="container createapp_page">
+	<h3>共有 $app_count 个$resource.ui("app_status_$status")应用</h3>
+    <table width='100%' cellspacing='10' cellpadding='1'>
+    <thead>
+    	<tr>
+    		<th width='40'>序号</th>
+    		<th>网站名称</th>
+    		<th>网址</th>
+    		<th>App状态</th>
+    		<th width='150' align='right'>管理</th>
+    	</tr>
+    </thead>
+    <tbody>
+    	#foreach($app in $apps)
+    	<tr>
+    		<td>$velocityCount</td>
+    		<td><img src="$link.upload("img/${app.logo}")" title="$format.text(${app.name})"/></td>
+    		<td>
+				<a href="${app.home_url}" target="_blank">${app.home_url}</a>
+			</td>
+    		<td>
+				$resource.ui("app_status_${app.status}")
+				#if(${app.status}==2)
+				<br/>				
+    			#foreach($ver in $app.versions())
+    			#set($build_status = ${ver.build_status})
+    			#if(${ver.build_status}==2)<a href="$ver.url()">$resource.ui("client_type_${ver.client_type}")</a>&nbsp;#end
+    			#end
+				#end
+    		</td>
+    		<td align='right'>
+				#if(${app.status}==1)<a href="javascript:approve_app('${app.guid}')">同意</a>, <a href="javascript:deny_app('${app.guid}')">拒绝</a>,#end
+				#if(${app.status}!=2)<a href="javascript:delete_app('${app.guid}')">删除</a>#end
+    		</td>
+    	</tr>
+		<tr>
+			<td colspan='5'>${app.outline}</td>
+		</tr>
+    	#end
+    </tbody>
+    </table>
+	#pager("?status=$status",$app_count,$PAGE_SIZE)
+  </div>
+</div>
+<script type='text/javascript'>
+<!--
+function approve_app(app_guid){
+	if(!confirm("点击确定将为该网站生成App？"))
+		return ;
+	ajax_post("$link.action('admin/audit_app?pass=true')","guid="+app_guid,function(html){
+		location.reload();
+	});
+}
+function deny_app(app_guid){
+	var url = "/admin/deny?app="+app_guid;
+	jQuery.colorbox({href:url,width:500,height:360,opacity:0.2,transition:'none',open:true});
+}
+function delete_app(app_guid){
+	if(!confirm("点击确定删除该App？"))
+		return ;
+	ajax_post("$link.action('admin/delete_app')","guid="+app_guid,function(html){
+		location.reload();
+	});
+}
+//-->
+</script>
+#else
+$response.sendError(403)
+#end

@@ -1,0 +1,6 @@
+body {background:#fff;font-family: Verdana, Tahoma;text-align:center;}
+a {color:#CE4614;}
+#msg-box {color: #0000FF; font-size:0.9em;text-align:center;border:3px solid #95C700;width:600px;margin:100px auto;padding:50px 20px;}
+#msg-box .logo {border-bottom:5px solid #ECE5D9;margin-bottom:20px;padding-bottom:10px;}
+#msg-box .title {font-size:1.4em;font-weight:bold;margin:0 0 30px 0;}
+#msg-box .nav {margin-top:20px;}

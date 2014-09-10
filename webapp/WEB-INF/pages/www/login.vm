@@ -1,0 +1,31 @@
+#set($layout="main.vm")
+#set($page_title = "登录 - NextApp.cn")
+
+<div id="page_banner">
+    <div class="container">
+        <h2>用户登陆</h2>
+    </div>
+</div>
+<div id="main">
+    <div class="container createapp_page clearfix">
+        <br/>
+
+        <div class="left_col">
+			<ol style="font-size: 16px; line-height: 200%">
+    			<li>1. NextApp 目前支持 5 种登录方式</li>
+    			<li>2. 我们不存储任何用户密码，无需担心密码泄漏问题</li>
+    			<li>3. 同一个帐号可以使用不同方式登录，请到个人中心<br />&nbsp;&nbsp;&nbsp;&nbsp;添加其他登录方式</li>
+			</ol>
+        </div>
+        <div class="right_col" style="margin-left: 25px; width: 400px;"><h3 style="margin-bottom: 15px;">请选择登录方式</h3>
+            <ul class="loginlist">
+                <li><a href="$link.action("openid/request?provider=qq")"><img src="$link.img('l_qq.png')" alt="QQ帐号"/></a></li>
+                <li><a href="$link.action("openid/request?provider=weibo")"><img src="$link.img('l_sina.png')" alt="新浪微博"/></a></li>
+                <li><a href="$link.action("openid/request?provider=google")"><img src="$link.img('l_gmail.png')" alt="Gmail"/></a></li>
+                <li><a href="$link.action("openid/request?provider=hotmail")"><img src="$link.img('l_hotmail.png')" alt="Hotmail"/></a></li>
+                <li><a href="$link.action("openid/request?provider=yahoo")"><img src="$link.img('l_yahoo.png')" alt="Yahoo"/></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+

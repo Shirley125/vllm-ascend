@@ -1,0 +1,48 @@
+#set($apps = $g_user.apps())
+<p>您现在有 ${apps.size()} 个 App</p>
+<table width='100%' class="table1">
+<thead>
+	<tr>
+		<th width='40'>序号</th>
+		<th>网站名称</th>
+		<th>网址</th>
+		<th>状态</th>
+		<th>App 生成状态</th>
+		<th width='150' align='right'>管理</th>
+	</tr>
+</thead>
+<tbody>
+	#foreach($app in $apps)
+	<tr>
+		<td>$velocityCount</td>
+		<td>$format.text(${app.name})</td>
+		<td><a href="${app.home_url}" target="_blank">${app.home_url}</a></td>
+		<td>
+			#if(${app.status}==0)
+				<a href="$link.root("step3?guid=${app.guid}")">等待上传图片</a>
+			#else
+				$resource.ui("app_status_${app.status}")
+			#end
+		</td>
+		<td>
+			#if(${app.status}==2)
+			#foreach($ver in $app.versions())
+			#set($build_status = ${ver.build_status})
+			$resource.ui("client_type_${ver.client_type}") --> $resource.ui("build_status_${ver.build_status}")
+			#if(${ver.build_status}==2)<a href="$ver.url()">下载 &raquo;</a>#end<br/>
+			#end
+			#elseif(${app.status}==3)
+			$format.text($app.GetErrorMsg())
+			#else
+			&lt;无&gt;
+			#end
+		</td>
+		<td align='right'>
+			<a href="/my/edit_app?guid=${app.guid}">编辑</a>
+		</td>
+	</tr>
+	#end
+</tbody>
+</table>
+<div align="center">
+    <a href="/step1" title="生成新的APP" class="a_icon"><img src="/img/ceat_app.png" alt="生成新的APP"/></a></div>

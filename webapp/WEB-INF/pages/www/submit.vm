@@ -1,0 +1,17 @@
+#set($layout="main.vm")
+#set($page_title = "App已成功提交 - NextApp")
+<div id="page_banner">
+    <div class="container">
+        <h2>App成功提交</h2>
+    </div>
+</div>
+<style>
+#submit_msg {font-size:14pt;line-height:32px;color:#0570DA;}
+#submit_msg a {color:#C00;text-decoration:underline;}
+</style>
+<div id="main">
+    <div class="container" id="submit_msg">
+		您的 App 已经提交成功，我们会在审批后为您生成 App，并将通过 ${g_user.email} 邮箱通知您最终结果，<br/>您也可以在 <a href="/my">个人页面</a> 查看 App 的生成结果。
+		<a href="/my/edit_user_info">使用别的邮箱接收通知</a>
+    </div>
+</div>

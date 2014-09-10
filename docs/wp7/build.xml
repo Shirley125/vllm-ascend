@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ================================================ -->
+<!-- Build an WP7 project.                        	  -->
+<!-- ================================================ -->
+<project name="NextApp.WP7" default="package" basedir=".">	
+
+	<property file="build.properties" />
+    
+    <!-- The absolute path. -->
+    <property name="config.abs" value="${basedir}/AppConfig/Config.xml"></property>
+    <property name="manifest.abs" value="${basedir}/WMAppManifest.xml"></property>
+	<property name="img_icon.abs" value="${basedir}/ApplicationIcon.png"></property>
+	<property name="img_logo.abs" value="${basedir}/Background.png"></property>
+    <property name="img_welcome.abs" value="${basedir}/SplashScreenImage.jpg"></property>
+
+	<!-- Is has image -->
+	<condition property="has_icon">  
+		<and>  
+			<available file="${app_imgpath_icon}"/>
+			<length string="${app_imgpath_icon}" trim="true" when="greater" length="0" />
+		</and>  
+	</condition>
+ 
+	<condition property="has_welcome">  
+	  	<and>  
+	   		<available file="${app_imgpath_welcome}"/>
+	    	<length string="${app_imgpath_welcome}" trim="true" when="greater" length="0" />
+	  	</and>  
+  	</condition>
+	
+	<!-- Is has *.bak  files -->
+	<condition property="has_config_bak">  
+	  	<and>  
+	   		<available file="${basedir}/Config.xml.bak"/>
+	  	</and>  
+	</condition>
+	
+	<condition property="has_manifest_bak">  
+	  	<and>  
+	   		<available file="${basedir}/WMAppManifest.xml.bak"/>
+	  	</and>  
+	</condition>
+	
+	<!-- copy resouces -->
+    <target name="copy.icon" if="${has_icon}">
+		<echo>create new ApplicationIcon.png</echo>
+    	<copy file="${app_imgpath_icon}" tofile="${img_icon.abs}"  overwrite="true"></copy>
+    	<echo>create new Background.png</echo>
+    	<copy file="${app_imgpath_icon}" tofile="${img_logo.abs}" overwrite="true"></copy>
+    </target>
+
+    <target name="copy.welcome" if="${has_welcome}">
+		<echo>create new SplashScreenImage.jpg</echo>
+    	<copy file="${app_imgpath_welcome}" tofile="${img_welcome.abs}" overwrite="true"></copy>
+    </target>
+	
+    <target name="copy.config.bak" if="${has_config_bak}">
+		<echo>copy config.bak</echo>
+    	<copy file="${basedir}/Config.xml.bak" tofile="${config.abs}"  overwrite="true"></copy>
+    </target>
+
+    <target name="copy.manifest.bak" if="${has_manifest_bak}">
+		<echo>copy manifest.bak</echo>
+    	<copy file="${basedir}/WMAppManifest.xml.bak" tofile="${manifest.abs}" overwrite="true"></copy>		
+    </target>	
+	
+    <!-- Init the project -->
+    <target name="init" depends="copy.icon,copy.welcome,copy.config.bak,copy.manifest.bak">
+        <echo>Init the project...</echo>    	
+		<echo>Modify file: WMAppManifest.xml </echo>
+		<replace file="${manifest.abs}" value="" encoding="utf-8">
+			<replacefilter token="#app_product_id#" value="${app_product_id}"/>
+			<replacefilter token="#app_name#" value="${app_name}"/>
+    	</replace>
+			
+		<echo>Modify file: config.xml </echo>
+		<replace file="${config.abs}" value="" encoding="utf-8">
+			<replacefilter token="#app_about_website#" value="${app_about_website}"/>
+			<replacefilter token="#app_name#" value="${app_name}"/>
+			<replacefilter token="#app_api_url#" value="${app_api_url}"/>
+			<replacefilter token="#app_about_intro#" value="${app_about_intro}"/>
+		</replace>
+    </target>       	
+    
+    <!-- Package the resources. -->
+    <target name="package" depends="init">
+        <echo>Packaging resources to xap...</echo>
+    	<tstamp>  
+            <format property="time" pattern="yyyy-MM-dd-HH-mm-ss"></format>
+        </tstamp>
+		<zip destfile="${basedir}/NextApp.xap" basedir="${basedir}">
+			<exclude name="task/**/*"/>
+			<exclude name="build.xml"/>
+			<exclude name="*.bak"/>
+			<exclude name="*.xap"/>
+		</zip>
+    </target>
+</project>

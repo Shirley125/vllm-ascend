@@ -1,0 +1,32 @@
+#set($layout="main.vm")
+#set($page_title = "NextApp 常见问题")
+
+<div id="page_banner"><div class="container"><h2>常见问题</h2></div></div>
+<div id="main">
+    <div class="container faq_page clearfix">
+        <p><strong name="nextapp_url">1. 什么是NextApp？</strong>
+          NextApp 的概念是为现有的网站生成手机客户端版本，包括Android，iPhone，和Windows Phone 7三个平台。<br />目前我们支持的网站类型是WordPress。NextApp会带     有指定网站的 LOGO，ICON，启动屏，关于我们 等信息。<br />从功能上讲，该APP可以让用户阅读WordPress博客文章，发表评论，有权限的用户还可以发表文章，删除
+        评论等等。</p>
+        <p><strong>2. 如何使用NextApp？</strong>
+        点击 创建我的APP ，简单三步，你将拥有属于你自己的APP！</p>
+        <p><strong>3. 为什么NextApp要在服务器上安装插件？</strong>
+          NextApp客户端是通过插件来跟网站交互的,除了提供浏览功能以外，还提供评论，
+        发表等互动功能。<br />只有通过插件才能保证客户端的用户体验，和 交互性功能的提供。</p>
+        <p><strong>4. NextApp服务收费吗？</strong>
+        NextApp的标准版本是免费的，我们承诺永久免费。</p>
+        <p><strong>5. 使用NextApp服务安全吗？</strong>
+          NextApp提供的服务器端插件是开源的，并且我们不存储任何敏感信息。<br />所有通过
+        插件能获取到的信息都是通过网页能获取到的，并不存在安全问 题。</p>
+        <p><strong>6. 我想修改App的logo等信息，怎么重新生成我的App？</strong>
+        进入NextApp.cn账户管理页面，在每一个你生成的App后面，会有&quot;重新生成App&quot;选项。</p>
+        <p><strong>7. NextApp 如何升级？</strong>
+          当NextApp的客户端有新版本的时候，我们会通知您。您可以自行决定是否给您的
+        网站生成NextApp的最新版本。</p>
+        <p><strong>8. 我可以在NextApp的基础上做二次开发吗？</strong>
+        我们的服务器端插件是开源的，您可以自行定制。我们的客户端不支持二次开发。</p>
+        <p><strong>9. 我的网站比较复杂，NextApp提供定制服务吗？</strong>
+        定制服务请联系 nextapp.cn@gmail.com。</p>
+        <p><strong>10. NextApp的版权是怎么定义的？</strong>
+          NextApp的服务器端插件是在BSD开源协议下发布的，您只需要遵守BSD协议的相关 规定即可。<br />深圳市奥思网络科技有限公司保留 NextApp 客户端的版权。</p>
+    </div>
+</div>

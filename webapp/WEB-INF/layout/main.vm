@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>$page_title</title>
+<link href="$link.css('main.css')"  type="text/css"  rel="stylesheet" />
+<script type="text/javascript" src="$link.js('jquery-1.7.1.min.js')"></script>
+<script type="text/javascript" src="$link.js('jquery.form.js')"></script>
+<script type="text/javascript" src="$link.js('utils.js')"></script>
+</head>
+
+<body>
+<div id="header">
+  <div class="container">
+    <div class="logo"><a href="/" title="NextApp">NextApp</a></div>
+      <div id="loginArea">#if($g_user)<a href="/my">我的App</a> | <a href="$link.action('user/logout')">退出登录</a>#else<a href="/login">登录</a>#end | <a href="/faq">常见问题</a></div>
+    <div id="mainnav">
+      <ul>
+        <li><a href="/" class="home">首页</a></li>
+        <li><a href="/features" class="features">功能介绍 </a></li>
+        <li><a href="/cases" class="cases">相关案例</a></li>
+        <li><a href="#if($g_user)/step1#else/login?page=step1#end" class="capp">生成App</a></li>
+        <li><a href="/about" class="about">关于我们</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+$screen_content
+<div style='clear:both;'></div>
+<div id="footer">
+  <div class="container">
+      <div class="footlink"><a href="/about">关于Nextapp</a> | <a href="/faq">常见问题</a> | <a href="/agreement">服务条款</a> | <a href="/contact">联系我们</a></div> <div class="copyright">&copy;$date.getYear() 深圳市奥思网络科技有限公司</div>
+	  <div class="share"><a href="http://weibo.com/nextapp" target="_blank" class='weibo'>新浪微博</a></div>
+  </div>
+</div>
+</body>
+</html>

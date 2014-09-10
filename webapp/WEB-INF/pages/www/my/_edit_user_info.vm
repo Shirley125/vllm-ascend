@@ -1,0 +1,40 @@
+
+<form id='form_set_user_info' action="$link.action('user/updateInfo')" method="POST">	
+	<table cellspacing='15'>
+    <tr>
+        <th>姓名：</th>
+        <td><input type='text' name='name' value='$format.html(${g_user.name})' class="intext"/></td>
+    </tr>
+    <tr>
+        <th>邮箱：</th>
+        <td>
+            <input type='text' name='email' class="intext" value='$format.html(${g_user.email})'/>                    
+            <span class="info"> 此邮箱用于接收App创建的结果信息，请务必填写真实可靠的邮箱地址</span>
+        </td>
+    </tr>
+    <tr class='action'>
+        <th></th>
+        <td>
+			<input type='submit' value='提交' class="submit"/>
+            <span id='error_msg'></span>
+        </td>
+    </tr>
+	</table>
+</form>
+
+
+<script type='text/javascript'>
+<!--
+$('#form_set_user_info').ajaxForm({
+    success:function (html) {
+        $('#error_msg').hide();
+        if (html.length > 0) {
+            $('#error_msg').html("<span class='error'>"+html+"</span>");
+        } else {
+            $('#error_msg').html("<span class='ok'>用户资料更新成功</span>");
+        }
+        $('#error_msg').show();
+    }
+});
+//-->
+</script>

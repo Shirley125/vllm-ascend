@@ -1,0 +1,88 @@
+#set($layout="main.vm")
+#set($page_title = "上传App图片 - NextApp")
+#set($guid = $link.param('guid'))
+<div id="page_banner">
+    <div class="container">
+        <h2>上传App图片</h2>
+    </div>
+</div>
+<div id="main">
+    <div class="container createapp_page clearfix">
+        <div class="app_tips clearfix">
+            <ul>
+                <li class="first"><span><em class="l"></em>1.安装NextApp插件<em class="r"></em></span></li>
+                <li><span><em class="l"></em>2.填写网站基本资料<em class="r"></em></span></li>
+                <li class="end"><span class="curr"><em class="l"></em>3.上传自定义图片<em class="r"></em></span></li>
+            </ul>
+        </div>
+        <form id="form_upload_pic" action="$link.action('app/upload_pic')" method="POST" enctype="multipart/form-data">
+            <input type='hidden' name='guid' value='$guid'/>
+			<div class='form'>
+				1. 所有图片必须使用 png 格式<br/>
+				2. 较小尺寸的图片生成的App文件也比较小，下载更快速
+				<table cellspacing='15' class="JQ-slide-nav" style="margin-top: 40px;width:500px">
+                    <tr class="item on">
+                        <th>网站ICON：</th>
+                        <td>
+                            <input type="file" class="infile" name="ico">
+                            <span class="info">像素 200*200px，将会被用于APP 图标</span>
+                        </td>
+                    </tr>
+                    <tr class="item">
+                        <th>网站LOGO：</th>
+                        <td>
+                            <input type="file" class="infile" name="logo">
+                            <span class="info">像素 150*40px，将会被用于应用程序界面</span>
+                        </td>
+                    </tr>
+                    <tr class="item">
+                        <th>启动屏图片：</th>
+                        <td>
+                            <input type="file" class="infile" name="welcome">
+                            <span class="info">像素 480*800px，将会被用于应用程序的启动界面</span>
+                        </td>
+                    </tr>
+                </table>
+                <div class="JQ-content-box">
+                    <ul class="JQ-slide-content">
+                        <li style="z-index: 1; opacity: 1; "><img src="$link.img('s_icon.png')" alt=""/></li>
+                        <li><img src="$link.img('s_logo.png')" alt=""/></li>
+                        <li><img style="padding: 34px 0 0 38px" src="$link.img('s_qidong.jpg')" alt=""/></li>
+                    </ul>
+                </div>
+            </div>
+			<div style='padding:10px 0 0 140px;'  class='clearfix'>
+				<input type='submit' value='提交图片' class='button'/> <span id='error_msg'></span>
+			</div>
+        </form>
+    </div>
+</div>
+<script type='text/javascript'>
+    <!--
+    $(function () {
+        $("#form_upload_pic").Slide({
+            effect:"fade",
+            speed:"fast",
+            timer:10000
+        });
+
+        $('#form_upload_pic').ajaxForm({
+            dataType:'json',
+    		beforeSubmit: function(){	
+                $('#error_msg').hide();		
+    			$('#error_msg').html("<span class='ajax_processing'>正在上传图片，请稍候...</span>");
+                $('#error_msg').show();
+    		},
+            success:function (json) {
+                if (json.msg) {
+                    $('#error_msg').hide();
+                	$('#error_msg').html("<span class='error'>" + json.msg + "</span>");
+                    $('#error_msg').show();
+                } else if (json.guid) {
+                    location.href = "$link.root('submit?guid=')" + json.guid;
+                }
+            }
+        });
+    });
+    //-->
+</script>

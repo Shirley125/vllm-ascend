@@ -1,0 +1,24 @@
+#set($layout="main.vm")
+#set($page_title = "NextApp 关于我们")
+
+<div id="page_banner">
+    <div class="container">
+        <h2>关于 NextApp</h2>
+    </div>
+</div>
+<div id="main">
+    <div class="container createapp_page clearfix">
+        <p> NextApp 的概念是为现有的网站生成手机客户端版本，支持 Android，iPhone，和 Windows Phone 7 三个平台。
+            <br/>站长可以为他的读者、用户提供更多的访问渠道，无需任何技术开发成本。<br/><br/>
+			和目前大部分 App 生成工具不同的是，NextApp 要求在网站的服务器上安装一个插件，手机客户端通过插件跟网站交互。<br/>保证客户端良好的用户体验，和交互性功能的提供。</p><br/>
+
+        <p>针对目前很多博客、媒体网站都是用 WordPress 搭建的现状，我们开发了 NextApp WordPress 版本。<br/>
+			WordPress 网站首先需要安装我们提供的插件（也可以根据我们定义的接口，自行开发插件），<br/>
+			站长通过 nextapp.cn 网站提交网站相关信息，就可生成一个专属的手机 App。该 App 带有网站个性的 LOGO、图标、启动屏图片，以及网站简介信息。<br/>
+			该 App 为用户提供阅读博客文章、发表评论和分享等功能。有权限的用户可以发表文章、删除评论等。</p>
+        <br/>
+        <p>我们会不断改进 NextApp 的客户端用户体验，提供平台以满足不同领域的博客、媒体、以及其他类型网站的客户端需求。<br/>
+			如果你对 NextApp 感兴趣或者有任何意见、建议，欢迎给我们发邮件：info(#)nextapp.cn</p>
+		<br/><a href="/contact"><img src="/img/contact_bnt.png" alt="查看联系方式" /> </a>
+    </div>
+</div>

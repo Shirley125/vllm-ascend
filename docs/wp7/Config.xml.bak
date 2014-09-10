@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<setting>
+  <!-- 站点 设置 -->
+  <main>
+    <!-- 在这里写下您的网站地址全称 -->
+    <blog_root>#app_about_website#</blog_root>
+
+    <!-- 在这里写下您的网站标题 -->
+    <blog_title>#app_name#</blog_title>
+
+    <!-- 这里写下您的网站地址全称然后附带 ?nextapp=index 例如 http://www.abc.com/?nextapp=index -->
+    <blog_querystring>#app_api_url#</blog_querystring>
+  </main>
+  
+  
+  <!-- 关于我们 设置 -->
+  <about>
+    <!-- 在这里写下"关于我们"的标题 -->
+    <title>#app_name#</title>
+
+    <!-- 在这里写下"关于我们"的贵站简介 -->
+    <description>#app_about_intro#</description>
+  </about>
+</setting>

@@ -1,0 +1,72 @@
+#set($layout="main.vm")
+#set($page_title = "NextApp 联系我们")
+
+<div id="page_banner">
+    <div class="container">
+        <h2>联系我们</h2>
+    </div>
+</div>
+<div id="main">
+    <div class="container contactpage clearfix">
+		<table width='100%'>
+		<tr>
+        <td width='400' valign='top'>
+            <h2 class="conh2">深圳市奥思网络科技有限公司</h2><br/>
+
+            <div class="cn">
+                <p>地址：深圳市福田区彩田路彩福大厦汇福阁31A<br/>
+                                                        电话：0755-83170505 <br/>
+                                                        传真：0755-83170501 <br/>
+                   E-mail：info(#)nextapp.cn <br/>
+                                                        网址：http://www.nextapp.cn</p>
+                <br/>
+            </div>
+        </td>
+        <td>
+            <p>如果您想了解我们的业务或者有其他需求，可以通过在线留言或者 email 联系我们。 您可以直接拨打公司电话，欢迎您的联系。</p>
+
+            <form method="post" action="$link.action("user/contact_us")" id="ContactForm">
+			<table cellspacing='15'>
+                <tr>
+                    <th>你的姓名：</th>
+                    <td><input name="name" class="intext" type="text" size="30" value=""/></td>
+                </tr>
+                <tr>
+                    <th>你的联系电话：</th>
+                    <td><input name="tel" class="intext" type="text" size="30" value=""/></th></td>
+                </tr>
+                <tr>
+                    <th>你的邮箱：</th>
+                    <td><input name="email" class="intext" type="text" type="text" size="30" value=""/></td>
+                </tr>
+                <tr>
+                    <th>你的留言：</th>
+                    <td><textarea name="message" rows="5" cols="40"></textarea></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><input type="submit" class="submit" value="完成发送"/></td>
+                </tr>
+			</table>
+            </form>
+        </td>
+		</tr>
+		</table>
+    </div>
+</div>
+<script type='text/javascript'>
+<!--
+$('#ContactForm').ajaxForm({
+    success: function(html) {
+        $('#error_msg').hide();
+        $('#error_msg').html('');
+    	if(html.length > 0){
+    		alert(html);
+    	}else{
+    		alert("发送成功，感谢你对 NextApp 的支持:)");
+			$('#ContactForm').resetForm();
+    	}
+    }
+});
+//-->
+</script>

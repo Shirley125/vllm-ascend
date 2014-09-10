@@ -1,0 +1,91 @@
+#set($app_id = $link.param('guid'))
+#set($app = $NextApp.app($app_id))
+
+<h2>编辑“$format.text(${app.name})”</h2>
+
+<form id="form_createapp" action="$link.action('app/editapp')" method="POST" enctype="multipart/form-data">
+<input type='hidden' name='guid' value='${app.guid}'/>
+  <table cellspacing='15'>
+  <tr>
+    <th>网站名称：</th>
+    <td>
+      <input class="intext" size="30" id="name" name="name" value="$format.html(${app.name})">
+	</td>
+  </tr>
+  <tr>
+    <th>网站简介：</th>
+    <td>
+      <textarea name='outline' style='width:330px;height:80px;'>${app.outline}</textarea> 
+	</td>
+  </tr>
+  <tr>
+    <th>你的网址：</th>
+    <td>
+      <input class="intext" size="30" id="home_url" name="home_url" value="${app.home_url}">
+	</td>
+  </tr>
+  <tr>
+    <th>NextApp插件URL：</th>
+    <td>
+      <input class="intext" size="50" id="plugin_url" name="plugin_url" value="${app.plugin_url}">
+	</td>
+  </tr>
+  <tr>
+    <th>网站ICON：<br/><em>(200*200 PNG)</em></th>
+	<td>
+        <input type="file" class="infile" name="icoFile">
+		#if(${app.ico})<br/><img src="$link.upload("img/${app.ico}")" width='30'/>#end
+	</td>
+  </tr>
+  <tr>
+    <th>网站LOGO：<br/><em>(150*40 PNG)</em></th>
+	<td>
+        <input type="file" class="infile" name="logoFile">
+		#if(${app.logo})<br/><img src="$link.upload("img/${app.logo}")"/>#end
+	</td>
+  </tr>
+  <tr>
+    <th>启动屏图片：<br/><em>(480*800 PNG)</em></th>
+	<td>
+        <input type="file" class="infile" name="welcomeFile">
+		#if(${app.welcome})<br/><img src="$link.upload("img/${app.welcome}")" width='200'/>#end
+	</td>
+  </tr>
+  <tr class='action'>
+    <th></th>
+    <td>
+	  <input type='submit' value='提交' class="submit"/>
+	  <span id='error_msg'></span>
+	</td>
+  </tr>
+  </table>
+</form>
+
+<script type='text/javascript'>
+<!--
+$('#form_createapp').ajaxForm({	
+	dataType: 'json',
+	beforeSubmit: function(){
+		if(!confirm("修改App需要重新管理员审批，再此期间无法下载App，是否继续？"))
+			return false;
+        $('#error_msg').hide();		
+		$('#error_msg').html("<span class='ajax_processing'>正在提交，请稍候...</span>");
+        $('#error_msg').show();
+	},
+    success: function(json) {
+    		$('#error_msg').hide();
+    	if(json.error==1 && json.msg)
+    		$('#error_msg').html("<span class='error'>"+json.msg+"</span>");    	
+		else {
+    		$('#error_msg').html("<span class='ok'>修改完成，需要等待管理审批通过才能重新生成，<a href='/my'>返回列表</a></span>");
+			t = setTimeout(function(){
+				clearTimeout(t);
+    			location.href="$link.root('my')";
+			},5000);
+		}
+    	$('#error_msg').show();
+    }
+});
+
+//-->
+</script>

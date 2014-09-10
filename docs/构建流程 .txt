@@ -1,0 +1,31 @@
+
+/data/nextapp/web Web项目路径
+/data/nextapp/versions 基础代码
+ 1.0
+ 1.1
+/data/nextapp/temp 临时构建目录
+
+
+
+1. 用户填写网站资料，验证通过后，上传图片，数据写入到数据库
+
+2. 在临时目录建立文件夹，并生成 build_android.properties,build_wp7.properties,build_ios.properties
+
+目录结构
+
+/data/nextapp/temp/app1/
+					   /android/...
+					   /ios/...
+					   /wp7/...
+					   /build_android.xml
+					   /build_android.properties
+					   /build_wp7.xml
+					   /build_wp7.properties
+					   /build_ios.xml
+					   /build_ios.properties
+					   
+3. 构建
+
+$ant build_android.xml
+$ant build_wp7.xml
+$ant build_ios.xml

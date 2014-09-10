@@ -1,0 +1,6 @@
+#set($ua = $request.getHeader('user-agent'))
+#if($ua.indexOf('Android')>0 || $ua.indexOf('ZuneWP7')>0 || $ua.indexOf('iPhone')>0 || $ua.indexOf('IEMobile')>0)
+#invoke("../wap/index.vm")
+#else
+$link.relocate("http://www.nextapp.cn")
+#end

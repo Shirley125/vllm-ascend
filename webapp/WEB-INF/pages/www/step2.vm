@@ -1,0 +1,83 @@
+#set($layout="main.vm")
+#set($page_title = "填写网站基本资料 - NextApp")
+<div id="page_banner">
+    <div class="container">
+        <h2>填写网站基本资料</h2>
+    </div>
+</div>
+<div id="main">
+    <div class="container createapp_page clearfix">
+        <div class="app_tips clearfix">
+            <ul>
+                <li class="first"><span><em class="l"></em>1.安装NextApp插件<em class="r"></em></span></li>
+                <li><span class="curr"><em class="l"></em>2.填写网站基本资料<em class="r"></em></span></li>
+                <li class="end"><span><em class="l"></em>3.上传自定义图片<em class="r"></em></span></li>
+            </ul>
+        </div>
+        <form id="form_createapp" action="$link.action('app/newblog')" method="POST">
+            <table cellspacing='15'>
+                <tr>
+                    <th>你的网址：</th>
+                    <td>
+                        <input class="intext" size="30" id="home_url" name="home_url" value="http://">
+                        <span class="info">例如：http://www.yousite.net/</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>网站名称：</th>
+                    <td>
+                        <input class="intext" size="30" id="name" name="name" placeholder="建议不超过5个字">
+                        <span class="info"></span>
+					</td>
+                </tr>
+                <tr>
+                    <th>网站简介：</th>
+                    <td>
+                        <textarea name='outline' style='width:330px;height:80px;'></textarea>
+                        <span class="info"></span>
+					</td>
+                </tr>
+                <tr>
+                    <th>NextApp插件URL：</th>
+                    <td>
+                        <input class="intext" size="50" id="plugin_url" name="plugin_url" value="">
+                        <span class="info">此URL将根据网址自动生成，如果你使用其他插件，请在此处输入插件访问地址</span>
+                    </td>
+                </tr>
+                <tr class='action'>
+					<th></th>
+					<td>
+                        <input type='submit' value='下一步&nbsp;&nbsp;' class="button"/>
+        				<span id='error_msg'></span>
+					</td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+<script type='text/javascript'>
+    <!--
+    $('#form_createapp').ajaxForm({
+        dataType:'json',
+		beforeSubmit: function(){	
+            $('#error_msg').hide();		
+			$('#error_msg').html("<span class='ajax_processing'>正在提交信息，请稍候...</span>");
+            $('#error_msg').show();
+		},
+        success:function (json) {
+            if (json.error == 1 && json.msg) {
+                $('#error_msg').hide();
+                $('#error_msg').html("<span class='error'>" + json.msg + "</span>");
+                $('#error_msg').show();
+            } else if (json.guid) {
+                location.href = "$link.root('step3?guid=')" + json.guid;
+            }
+        }
+    });
+
+    $('#home_url').change(function () {
+        $('#plugin_url').val($(this).val() + "?nextapp=index");
+    });
+    //-->
+</script>
