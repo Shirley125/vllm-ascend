@@ -1011,10 +1011,10 @@ class NPUModelRunner(LoRAModelRunnerMixin, ECConnectorModelRunnerMixin):
                 output,
                 is_embed=pos_info.is_embed,
             )
-            self.maybe_save_ec_to_connector(self.encoder_cache,
-                                            request_id=req_id,
-                                            input_id=input_id)
-
+            self.maybe_save_ec_to_connector(
+                encoder=self.encoder_cache,
+                mm_hash=mm_hash)
+              
     # TODO: remove this once we drop support for vLLM 0.10.2
     def _batch_mm_kwargs_from_scheduler_0102(
         self,
