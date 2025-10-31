@@ -947,6 +947,7 @@ class NPUModelRunner(LoRAModelRunnerMixin, ECConnectorModelRunnerMixin):
             self.maybe_save_ec_to_connector(self.encoder_cache,
                                                 request_id=req_id,
                                                 input_id=input_id)
+        self.maybe_wait_for_ec_save()
 
     def _batch_mm_kwargs_from_scheduler(
         self,
