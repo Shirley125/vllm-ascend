@@ -1592,16 +1592,18 @@ class NPUModelRunner(LoRAModelRunnerMixin, ECConnectorModelRunnerMixin):
                 (0, max_num_reqs_across_dp - logits_indices.shape[0]))
         ec_finished_sending = None
         ec_finished_recving = None
+        ec_load_failed = None
         if ec_connector_output:
             ec_finished_recving = ec_connector_output.finished_recving
             ec_finished_sending = ec_connector_output.finished_sending
+            ec_load_failed = ec_connector_output.load_failed
 
         return (attn_metadata, positions, num_scheduled_tokens,
                 num_input_tokens, num_tokens_across_dp,
                 maybe_padded_num_tokens, logits_indices, spec_decode_metadata,
                 input_ids, inputs_embeds, intermediate_tensors,
                 max_num_scheduled_tokens, ec_finished_sending,
-                ec_finished_recving)
+                ec_finished_recving, ec_load_failed)
 
     def _generate_process_reqs_hidden_states(self, attn_metadata, with_prefill,
                                              maybe_padded_num_tokens,
@@ -1981,7 +1983,7 @@ class NPUModelRunner(LoRAModelRunnerMixin, ECConnectorModelRunnerMixin):
              num_input_tokens, num_tokens_across_dp, maybe_padded_num_tokens,
              logits_indices, spec_decode_metadata, input_ids, inputs_embeds,
              intermediate_tensors, max_query_len, ec_finished_sending,
-             ec_finished_recving) = (self._prepare_inputs(
+             ec_finished_recving, ec_load_failed) = (self._prepare_inputs(
                  scheduler_output, intermediate_tensors))
 
             if self.dynamic_eplb:
@@ -2036,6 +2038,7 @@ class NPUModelRunner(LoRAModelRunnerMixin, ECConnectorModelRunnerMixin):
         ec_connector_output = ECConnectorOutput(
             finished_sending=ec_finished_sending,
             finished_recving=ec_finished_recving,
+            load_failed=ec_load_failed,
         )
         finished_sending = None
         finished_recving = None
@@ -2296,13 +2299,14 @@ class NPUModelRunner(LoRAModelRunnerMixin, ECConnectorModelRunnerMixin):
         output = copy.copy(EMPTY_MODEL_RUNNER_OUTPUT)
         if has_ec_transfer():
             ec_connector = get_ec_transfer()
-            ec_finished_sending, ec_finished_recving = (
+            ec_finished_sending, ec_finished_recving, ec_load_failed = (
                 ec_connector.get_finished(scheduler_output.finished_req_ids))
 
             ec_connector.clear_connector_metadata()
             output.ec_connector_output = ECConnectorOutput(
                 finished_recving=ec_finished_recving,
                 finished_sending=ec_finished_sending,
+                load_failed=ec_load_failed,
             )
         output.kv_connector_output = KVConnectorOutput(
             finished_sending=finished_sending,
